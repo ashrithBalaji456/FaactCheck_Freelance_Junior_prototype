@@ -16,7 +16,7 @@ flowchart TD
     User([User Claim Input]) --> Dashboard[Dashboard UI / React + Vite]
     Dashboard -->|POST /api/v1/verifications| API[Express API Server]
     API -->|HTTP 202 Accepted| Dashboard
-    API --> DB[(MongoDB: Verification PENDING)]
+    API --> DB[(In-Memory Storage: Verification PENDING)]
     
     subgraph Orchestrator [Verification Orchestrator]
         ClaimAnalyzer[Agent 1: Claim Analyzer]
@@ -140,11 +140,10 @@ factverify-ai/
    ```dotenv
    NODE_ENV=development
    PORT=5000
-   MONGODB_URI=mongodb://localhost:27017/factverify
 
    # Real keys for live verification:
    GEMINI_API_KEY=your_actual_gemini_api_key
-   GEMINI_MODEL=gemini-1.5-flash
+   GEMINI_MODEL=gemini-2.5-flash
    TAVILY_API_KEY=your_actual_tavily_api_key
 
    CLIENT_ORIGIN=http://localhost:5173
@@ -163,22 +162,9 @@ factverify-ai/
 
 ---
 
-### Starting Local Database via Docker
-
-If you don't have MongoDB installed natively on your system, start local MongoDB with Docker Compose:
-
-```bash
-npm run docker:up
-```
-
-To stop MongoDB:
-```bash
-npm run docker:down
-```
-
----
-
 ### Running the Application in Development
+
+No database installation or Docker container is required. The system runs on built-in, high-performance in-memory collections.
 
 Run both the backend API and frontend Vite server concurrently from the monorepo root:
 

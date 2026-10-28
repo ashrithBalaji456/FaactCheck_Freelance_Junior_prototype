@@ -123,29 +123,29 @@ export function VerificationTimeline({
   };
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
-      <div className="flex items-center justify-between mb-6">
+    <div className="glass-card rounded-3xl p-6 md:p-8 shadow-2xl border border-white/10">
+      <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
         <div>
-          <h2 className="text-base font-semibold text-slate-100 flex items-center gap-2">
+          <h2 className="text-base font-bold text-slate-100 flex items-center gap-2.5">
             <span>Live Multi-Agent Pipeline</span>
             {!isCompleted && !isFailed && (
-              <span className="flex h-2 w-2 relative">
+              <span className="flex h-2.5 w-2.5 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
               </span>
             )}
           </h2>
-          <p className="text-xs text-slate-400 mt-0.5">
-            Real-time server events streaming directly from the orchestrator
+          <p className="text-xs text-slate-400 mt-1">
+            Real-time server events streaming directly from the multi-agent orchestrator
           </p>
         </div>
 
-        <div className="text-xs font-mono text-slate-400 px-2.5 py-1 rounded bg-slate-950 border border-slate-800">
+        <div className="text-xs font-mono text-slate-300 px-3 py-1 rounded-full bg-slate-950/70 border border-white/[0.08] backdrop-blur-md">
           {events.length} events logged
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-3.5">
         {TIMELINE_STEPS.map((step, idx) => {
           const status = getStepStatus(step, idx);
           const Icon = step.icon;
@@ -153,14 +153,14 @@ export function VerificationTimeline({
           return (
             <div
               key={step.id}
-              className={`flex items-start gap-3.5 p-3 rounded-xl border transition-all ${
+              className={`flex items-start gap-3.5 p-3.5 rounded-2xl border transition-all ${
                 status === 'completed'
-                  ? 'bg-emerald-950/20 border-emerald-800/40 text-slate-200'
+                  ? 'bg-emerald-500/10 border-emerald-500/25 text-slate-200 backdrop-blur-md'
                   : status === 'active'
-                  ? 'bg-slate-800/60 border-emerald-500/50 text-white shadow-sm ring-1 ring-emerald-500/20'
+                  ? 'bg-slate-900/80 border-emerald-400/50 text-white shadow-lg shadow-emerald-950/40 ring-1 ring-emerald-500/30 backdrop-blur-xl'
                   : status === 'failed'
-                  ? 'bg-rose-950/30 border-rose-800/50 text-rose-200'
-                  : 'bg-slate-950/40 border-slate-800/60 text-slate-400 opacity-75'
+                  ? 'bg-rose-500/15 border-rose-500/30 text-rose-200 backdrop-blur-md'
+                  : 'glass-inset text-slate-400 opacity-65'
               }`}
             >
               <div className="mt-0.5 shrink-0">
@@ -178,22 +178,23 @@ export function VerificationTimeline({
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2">
                   <div className="text-sm font-semibold flex items-center gap-2">
-                    <Icon className="w-4 h-4 text-slate-400" />
+                    <Icon className="w-4 h-4 text-emerald-400/80" />
                     <span>{step.label}</span>
                   </div>
-                  <span className="text-[11px] font-mono capitalize text-slate-400">
+                  <span className="text-[11px] font-mono capitalize text-slate-400 bg-black/20 px-2 py-0.5 rounded-full border border-white/5">
                     {status}
                   </span>
                 </div>
-                <p className="text-xs text-slate-400 mt-0.5">{step.description}</p>
+                <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">{step.description}</p>
               </div>
             </div>
           );
         })}
 
         {isFailed && (
-          <div className="p-3.5 rounded-xl bg-rose-950/50 border border-rose-800/80 text-rose-200 text-xs">
-            <span className="font-semibold text-rose-300">Failure:</span> {failureMessage || 'Verification could not be completed.'}
+          <div className="p-4 rounded-2xl bg-rose-500/15 border border-rose-500/30 text-rose-200 text-xs backdrop-blur-xl space-y-1">
+            <span className="font-bold text-rose-300 block">Verification Terminated</span>
+            <span className="leading-relaxed">{failureMessage || 'Verification could not be completed.'}</span>
           </div>
         )}
       </div>

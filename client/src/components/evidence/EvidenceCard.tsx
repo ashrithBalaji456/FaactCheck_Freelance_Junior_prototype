@@ -19,7 +19,11 @@ export function EvidenceCard({ evidence }: EvidenceCardProps) {
       : 'border-l-cyan-400/70';
 
   return (
-    <div className="glass-card glass-card-hover rounded-2xl p-5 flex flex-col justify-between space-y-4 group">
+    <div
+      id={`evidence-${displayId}`}
+      data-evidence-id={displayId}
+      className="glass-card glass-card-hover rounded-2xl p-5 flex flex-col justify-between space-y-4 group transition-all duration-300 scroll-mt-28"
+    >
       <div className="space-y-3">
         {/* Header Tags Row */}
         <div className="flex items-center justify-between gap-2 flex-wrap">

@@ -1,13 +1,14 @@
 import React from 'react';
-import { AgentArgumentItem } from '../../types';
+import { AgentArgumentItem, EvidenceItem } from '../../types';
 import { AgentArgumentCard } from './AgentArgumentCard';
 import { Swords } from 'lucide-react';
 
 interface DebateRoundViewProps {
   argumentsList: AgentArgumentItem[];
+  evidenceList?: EvidenceItem[];
 }
 
-export function DebateRoundView({ argumentsList }: DebateRoundViewProps) {
+export function DebateRoundView({ argumentsList, evidenceList = [] }: DebateRoundViewProps) {
   // Group arguments by roundNumber
   const roundsMap = new Map<number, AgentArgumentItem[]>();
   for (const arg of argumentsList) {
@@ -44,7 +45,11 @@ export function DebateRoundView({ argumentsList }: DebateRoundViewProps) {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {args.map((arg, idx) => (
-                  <AgentArgumentCard key={arg.id || arg._id || idx} argument={arg} />
+                  <AgentArgumentCard
+                    key={arg.id || arg._id || idx}
+                    argument={arg}
+                    evidenceList={evidenceList}
+                  />
                 ))}
               </div>
             </div>

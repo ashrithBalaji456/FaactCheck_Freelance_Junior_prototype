@@ -12,6 +12,7 @@ import { VerificationDetail } from '../../types';
 import { VerdictBadge } from '../common/Badge';
 import { EvidenceList } from '../evidence/EvidenceList';
 import { DebateRoundView } from '../debate/DebateRoundView';
+import { InteractiveCitationText } from '../common/InteractiveCitationText';
 import { formatDate, formatDuration, formatConfidence } from '../../utils/formatters';
 
 interface VerdictReportProps {
@@ -90,16 +91,18 @@ export function VerdictReport({ report }: VerdictReportProps) {
           )}
         </div>
 
-        {/* Judicial Summary & Explanation */}
+        {/* Judicial Summary & Explanation with Interactive Citations */}
         {report.summary && (
           <div className="mt-6 pt-6 border-t border-white/[0.08] space-y-4">
             <div>
               <h3 className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">
                 Executive Finding
               </h3>
-              <p className="text-sm md:text-[15px] text-slate-200 leading-relaxed font-normal">
-                {report.summary}
-              </p>
+              <InteractiveCitationText
+                text={report.summary}
+                evidenceList={report.evidence || []}
+                className="text-sm md:text-[15px] text-slate-200 leading-relaxed font-normal"
+              />
             </div>
 
             {report.explanation && (
@@ -108,9 +111,11 @@ export function VerdictReport({ report }: VerdictReportProps) {
                   Judicial Rationale & Evidence Weighing
                 </h3>
                 <div className="glass-inset p-4.5 rounded-2xl border border-white/[0.06]">
-                  <p className="text-xs md:text-sm text-slate-300/90 leading-relaxed whitespace-pre-line font-normal">
-                    {report.explanation}
-                  </p>
+                  <InteractiveCitationText
+                    text={report.explanation}
+                    evidenceList={report.evidence || []}
+                    className="text-xs md:text-sm text-slate-300/90 leading-relaxed whitespace-pre-line font-normal"
+                  />
                 </div>
               </div>
             )}
@@ -202,7 +207,10 @@ export function VerdictReport({ report }: VerdictReportProps) {
       )}
 
       {/* 3. Multi-Round Debate Arguments */}
-      <DebateRoundView argumentsList={report.arguments || []} />
+      <DebateRoundView
+        argumentsList={report.arguments || []}
+        evidenceList={report.evidence || []}
+      />
 
       {/* 4. Complete Evidence List */}
       <EvidenceList evidence={report.evidence || []} />

@@ -9,23 +9,23 @@ interface VerdictBadgeProps {
 export function VerdictBadge({ verdict, size = 'md' }: VerdictBadgeProps) {
   if (!verdict) {
     return (
-      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-800/80 text-slate-300 border border-white/10 backdrop-blur-md">
+      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-slate-800/80 text-slate-300 border border-white/10 backdrop-blur-md whitespace-nowrap">
         PENDING
       </span>
     );
   }
 
   const sizeClasses = {
-    sm: 'px-2.5 py-0.5 text-xs font-semibold',
-    md: 'px-3.5 py-1.5 text-sm font-bold',
-    lg: 'px-4.5 py-2 text-base font-extrabold',
+    sm: 'px-3 py-1 text-xs font-semibold gap-1.5',
+    md: 'px-4 py-1.5 text-sm font-bold gap-2',
+    lg: 'px-6 py-2 text-base font-extrabold gap-2.5',
   }[size];
 
   switch (verdict) {
     case 'TRUE':
       return (
         <span
-          className={`inline-flex items-center rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/35 backdrop-blur-xl shadow-lg shadow-emerald-950/40 tracking-wide ${sizeClasses}`}
+          className={`inline-flex items-center rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/40 backdrop-blur-xl shadow-lg shadow-emerald-950/40 whitespace-nowrap box-border ${sizeClasses}`}
         >
           ✓ TRUE
         </span>
@@ -33,7 +33,7 @@ export function VerdictBadge({ verdict, size = 'md' }: VerdictBadgeProps) {
     case 'FALSE':
       return (
         <span
-          className={`inline-flex items-center rounded-full bg-rose-500/15 text-rose-300 border border-rose-400/35 backdrop-blur-xl shadow-lg shadow-rose-950/40 tracking-wide ${sizeClasses}`}
+          className={`inline-flex items-center rounded-full bg-rose-500/15 text-rose-300 border border-rose-400/40 backdrop-blur-xl shadow-lg shadow-rose-950/40 whitespace-nowrap box-border ${sizeClasses}`}
         >
           ✕ FALSE
         </span>
@@ -41,7 +41,7 @@ export function VerdictBadge({ verdict, size = 'md' }: VerdictBadgeProps) {
     case 'PARTIALLY_TRUE':
       return (
         <span
-          className={`inline-flex items-center rounded-full bg-amber-500/15 text-amber-300 border border-amber-400/35 backdrop-blur-xl shadow-lg shadow-amber-950/40 tracking-wide ${sizeClasses}`}
+          className={`inline-flex items-center rounded-full bg-amber-500/15 text-amber-300 border border-amber-400/40 backdrop-blur-xl shadow-lg shadow-amber-950/40 whitespace-nowrap box-border ${sizeClasses}`}
         >
           ⚠ PARTIALLY TRUE
         </span>
@@ -50,7 +50,7 @@ export function VerdictBadge({ verdict, size = 'md' }: VerdictBadgeProps) {
     default:
       return (
         <span
-          className={`inline-flex items-center rounded-full bg-slate-800/60 text-slate-300 border border-white/15 backdrop-blur-xl shadow-md tracking-wide ${sizeClasses}`}
+          className={`inline-flex items-center rounded-full bg-slate-800/60 text-slate-300 border border-white/20 backdrop-blur-xl shadow-md whitespace-nowrap box-border ${sizeClasses}`}
         >
           ? UNCERTAIN
         </span>

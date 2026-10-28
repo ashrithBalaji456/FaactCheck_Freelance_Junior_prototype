@@ -143,7 +143,7 @@ factverify-ai/
 
    # Real keys for live verification:
    GEMINI_API_KEY=your_actual_gemini_api_key
-   GEMINI_MODEL=gemini-3.5-flash
+   GEMINI_MODEL=gemini-3.5-flash-lite
    TAVILY_API_KEY=your_actual_tavily_api_key
 
    CLIENT_ORIGIN=http://localhost:5173

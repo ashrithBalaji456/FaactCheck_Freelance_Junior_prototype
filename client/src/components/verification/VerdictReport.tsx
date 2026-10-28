@@ -48,7 +48,7 @@ export function VerdictReport({ report }: VerdictReportProps) {
               <VerdictBadge verdict={report.verdict} size="lg" />
               {report.confidenceScore != null && (
                 <div className="text-xs bg-slate-950 px-3 py-1.5 rounded-full border border-slate-800 text-slate-300">
-                  <span className="text-slate-400">Score:</span>{' '}
+                  <span className="text-slate-400">Confidence:</span>{' '}
                   <span className="font-bold text-white font-mono">
                     {formatConfidence(report.confidenceScore)}
                   </span>

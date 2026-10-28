@@ -7,7 +7,7 @@ const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   PORT: z.coerce.number().default(5000),
   GEMINI_API_KEY: z.string().optional(),
-  GEMINI_MODEL: z.string().default('gemini-2.5-flash'),
+  GEMINI_MODEL: z.string().default('gemini-3.5-flash'),
   TAVILY_API_KEY: z.string().optional(),
   CLIENT_ORIGIN: z.string().default('http://localhost:5173'),
   MAX_DEBATE_ROUNDS: z.coerce.number().default(3),
